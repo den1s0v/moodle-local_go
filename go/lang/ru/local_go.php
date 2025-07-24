@@ -36,3 +36,10 @@ $string['status_help'] = 'Включить или отключить это пе
 $string['targeturl'] = 'Целевой URL';
 $string['targeturl_help'] = 'Полный URL для перенаправления (должен начинаться с http:// или https://).';
 $string['withselected'] = 'С выбранными...';
+
+// Настройки.
+$string['settings'] = 'Настройки';
+$string['globalenable'] = 'Включить плагин';
+$string['globalenable_desc'] = 'Глобальное включение или отключение всех перенаправлений';
+$string['allowguests'] = 'Разрешить доступ гостям';
+$string['allowguests_desc'] = 'Разрешить неавторизованным пользователям использовать перенаправления';

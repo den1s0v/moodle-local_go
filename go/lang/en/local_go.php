@@ -26,6 +26,7 @@ $string['lastmodified'] = 'Last Modified';
 $string['manage'] = 'Manage Short URLs';
 $string['redirectcloned'] = 'Redirect cloned successfully';
 $string['redirectdeleted'] = 'Redirect deleted successfully';
+$string['redirectsaved'] = 'Redirect saved successfully';
 $string['redirectsettings'] = 'Redirect Settings';
 $string['shortname'] = 'Short Name';
 $string['shortname_help'] = 'Unique identifier for the short URL (letters, numbers, hyphens and underscores only)';
@@ -35,3 +36,10 @@ $string['status_help'] = 'Enable or disable this redirect';
 $string['targeturl'] = 'Target URL';
 $string['targeturl_help'] = 'Full URL to redirect to (must start with http:// or https://)';///
 $string['withselected'] = 'With selected...';
+
+// Settings.
+$string['settings'] = 'Settings';
+$string['globalenable'] = 'Enable plugin';
+$string['globalenable_desc'] = 'Globally enable or disable all redirects';
+$string['allowguests'] = 'Allow guest access';
+$string['allowguests_desc'] = 'Allow unauthenticated users to use redirects';
