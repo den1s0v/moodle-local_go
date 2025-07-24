@@ -44,12 +44,21 @@ class local_go_redirects_table extends table_sql {
         return '<input type="checkbox" name="ids[]" value="'.$row->id.'" />';
     }
     
+    protected function col_shortname($row) {
+        $url = local_go_make_url_from_shortname($row->shortname);
+        return '<a href="'.$url.'" target=_blank>'.$row->shortname.'</a>';
+    }
+    
+    protected function col_url($row) {
+        return '<a href="'.$row->url.'" target=_blank>'.$row->url.'</a>';
+    }
+    
     protected function col_status($row) {
         return $row->status ? get_string('enabled', 'local_go') : get_string('disabled', 'local_go');
     }
     
     protected function col_timemodified($row) {
-        return userdate($row->timemodified);
+        return '<small>'.userdate($row->timemodified).'</small>';
     }
     
     protected function col_actions($row) {
@@ -103,7 +112,7 @@ class local_go_redirects_table extends table_sql {
         echo '</div>';
         echo '</form>';
         
-        // Select all checkbox.
+        // Select all checkboxes.
         echo '<script>
             document.getElementById("select-all").addEventListener("change", function() {
                 var checkboxes = document.querySelectorAll(\'input[name="ids[]"]\');

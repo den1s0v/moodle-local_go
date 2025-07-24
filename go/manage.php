@@ -26,10 +26,10 @@ if ($bulkaction && confirm_sesskey()) {
 }
 
 // Обработка отдельных действий.
-if ($action && confirm_sesskey()) {
+if ($action) {
     switch ($action) {
         case 'add':
-            $form = new local_go_edit_form();
+            $form = new local_go_edit_form(new moodle_url($PAGE->url, ['action' => 'add']));
             if ($form->is_cancelled()) {
                 redirect($PAGE->url);
             } else if ($data = $form->get_data()) {
@@ -45,7 +45,7 @@ if ($action && confirm_sesskey()) {
             
         case 'edit':
             $redirect = local_go_get_redirect($id);
-            $form = new local_go_edit_form(null, $redirect);
+            $form = new local_go_edit_form(new moodle_url($PAGE->url, ['action' => 'edit']), $redirect);
             if ($form->is_cancelled()) {
                 redirect($PAGE->url);
             } else if ($data = $form->get_data()) {
@@ -60,7 +60,7 @@ if ($action && confirm_sesskey()) {
             break;
             
         case 'delete':
-            if ($confirm && $id) {
+            if (confirm_sesskey() && $confirm && $id) {
                 local_go_delete_redirect($id);
                 redirect($PAGE->url, get_string('redirectdeleted', 'local_go'));
             } else {
@@ -76,14 +76,14 @@ if ($action && confirm_sesskey()) {
             break;
             
         case 'toggle':
-            if ($id) {
+            if (confirm_sesskey() && $id) {
                 local_go_toggle_redirect($id);
                 redirect($PAGE->url);
             }
             break;
             
         case 'clone':
-            if ($id) {
+            if (confirm_sesskey() && $id) {
                 local_go_clone_redirect($id);
                 redirect($PAGE->url, get_string('redirectcloned', 'local_go'));
             }

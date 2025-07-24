@@ -25,7 +25,7 @@ class local_go_edit_form extends moodleform {
         $mform->addHelpButton('url', 'targeturl', 'local_go');
 
         // Status.
-        $mform->addElement('selectyesno', 'status', get_string('status', 'local_go'));
+        $mform->addElement('selectyesno', 'status', get_string('active'/* , 'local_go' */));
         $mform->setDefault('status', 1);
         $mform->addHelpButton('status', 'status', 'local_go');
 
@@ -60,7 +60,7 @@ class local_go_edit_form extends moodleform {
         }
 
         // Validate URL format.
-        if (!preg_match('#^https?://#i', $data['url'])) {
+        if (!preg_match('#^/|^https?://#i', $data['url'])) {
             $errors['url'] = get_string('invalidurl', 'local_go');
         }
 

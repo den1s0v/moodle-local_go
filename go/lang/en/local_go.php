@@ -21,7 +21,7 @@ $string['eventredirectcreated'] = 'Redirect created';
 $string['eventredirectupdated'] = 'Redirect updated';
 $string['eventredirectdeleted'] = 'Redirect deleted';
 $string['go'] = 'Run';
-$string['invalidurl'] = 'URL must start with http:// or https://';///
+$string['invalidurl'] = 'URL must start with / or http:// or https://';
 $string['lastmodified'] = 'Last Modified';
 $string['manage'] = 'Manage Short URLs';
 $string['redirectcloned'] = 'Redirect cloned successfully';
@@ -34,7 +34,7 @@ $string['shortnametaken'] = 'This short name is already in use';
 $string['status'] = 'Status';
 $string['status_help'] = 'Enable or disable this redirect';
 $string['targeturl'] = 'Target URL';
-$string['targeturl_help'] = 'Full URL to redirect to (must start with http:// or https://)';///
+$string['targeturl_help'] = 'URL to redirect to (full URL must start with http:// or https://, relative URL must start with /).';
 $string['withselected'] = 'With selected...';
 
 // Settings.

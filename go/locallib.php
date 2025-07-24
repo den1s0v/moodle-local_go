@@ -1,9 +1,14 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
+function local_go_make_url_from_shortname($shortname) {
+    global $CFG;
+    return "$CFG->wwwroot/local/go/?to=$shortname";
+}
+
 function local_go_get_redirect($id) {
     global $DB;
-    return $DB->get_record('local_go', ['id' => $id], '*', MUST_EXIST);
+    return (array) $DB->get_record('local_go', ['id' => $id], '*', MUST_EXIST);
 }
 
 function local_go_save_redirect($data) {
@@ -62,7 +67,7 @@ function local_go_toggle_redirect($id) {
     global $DB, $USER;
     
     $redirect = $DB->get_record('local_go', ['id' => $id], '*', MUST_EXIST);
-    $redirect->status = !$redirect->status;
+    $redirect->status = !$redirect->status;  // Flip flag.
     $redirect->timemodified = time();
     $redirect->userid = $USER->id;
     
