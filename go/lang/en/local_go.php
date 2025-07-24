@@ -1,0 +1,27 @@
+<?php
+$string['pluginname'] = 'Go URL Shortener';
+$string['errornotfound'] = 'Short URL not found';
+$string['errordisabled'] = 'This short URL is currently disabled';
+$string['manage'] = 'Manage Short URLs';
+$string['redirectsettings'] = 'Redirect Settings';
+$string['shortname'] = 'Short Name';
+$string['shortname_help'] = 'Unique identifier for the short URL (letters, numbers, hyphens and underscores only)';
+$string['shortnametaken'] = 'This short name is already in use';
+$string['targeturl'] = 'Target URL';
+$string['targeturl_help'] = 'Full URL to redirect to (must start with http:// or https://)';///
+$string['invalidurl'] = 'URL must start with http:// or https://';///
+$string['status'] = 'Status';
+$string['status_help'] = 'Enable or disable this redirect';
+$string['category'] = 'Category';
+$string['category_help'] = 'Optional category for organizing your redirects';
+$string['comment'] = 'Comment';
+$string['comment_help'] = 'Optional notes about this redirect';
+$string['enabled'] = 'Enabled';
+$string['disabled'] = 'Disabled';
+$string['lastmodified'] = 'Last Modified';
+$string['actions'] = 'Actions';
+$string['withselected'] = 'With selected...';
+$string['confirmdelete'] = 'Are you sure you want to delete this redirect?';
+$string['redirectdeleted'] = 'Redirect deleted successfully';
+$string['redirectcloned'] = 'Redirect cloned successfully';
+$string['bulkaction'] = 'Bulk Action';
