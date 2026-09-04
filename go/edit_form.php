@@ -29,6 +29,11 @@ class local_go_edit_form extends moodleform {
         $mform->setDefault('status', 1);
         $mform->addHelpButton('status', 'status', 'local_go');
 
+        // Allow unauthenticated access.
+        $mform->addElement('selectyesno', 'allowguest', get_string('allowguest', 'local_go'));
+        $mform->setDefault('allowguest', 0);
+        $mform->addHelpButton('allowguest', 'allowguest', 'local_go');
+
         // Category.
         $mform->addElement('text', 'category', get_string('category', 'local_go'), ['size' => 40]);
         $mform->setType('category', PARAM_TEXT);

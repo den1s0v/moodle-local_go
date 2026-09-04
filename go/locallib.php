@@ -18,6 +18,7 @@ function local_go_save_redirect($data) {
     $record->shortname = $data->shortname;
     $record->url = $data->url;
     $record->status = $data->status;
+    $record->allowguest = !empty($data->allowguest) ? 1 : 0;
     $record->category = $data->category;
     $record->comment = $data->comment;
     $record->timemodified = time();

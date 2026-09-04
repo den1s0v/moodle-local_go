@@ -12,10 +12,11 @@ class local_go_redirects_table extends table_sql {
             'shortname',
             'url',
             'status',
+            'allowguest',
             'category',
             'comment',
             'timemodified',
-            'actions'  // 7.
+            'actions'  // 8.
         ];
         
         $headers = [
@@ -23,6 +24,7 @@ class local_go_redirects_table extends table_sql {
             get_string('shortname', 'local_go'),
             get_string('targeturl', 'local_go'),
             get_string('status', 'local_go'),
+            get_string('allowguest', 'local_go'),
             get_string('category', 'local_go'),
             get_string('comment', 'local_go'),
             get_string('lastmodified', 'local_go'),
@@ -35,7 +37,8 @@ class local_go_redirects_table extends table_sql {
         $this->no_sorting('select');
         $this->no_sorting('actions');
         $this->column_class(0 /* 'select' */, 'text-center');
-        $this->column_class(7 /* 'actions' */, 'text-center');
+        $this->column_class(4 /* 'allowguest' */, 'text-center');
+        $this->column_class(8 /* 'actions' */, 'text-center');
         
         $this->set_sql('*', '{local_go}', '1=1');
     }
@@ -55,6 +58,10 @@ class local_go_redirects_table extends table_sql {
     
     protected function col_status($row) {
         return $row->status ? get_string('enabled', 'local_go') : get_string('disabled', 'local_go');
+    }
+
+    protected function col_allowguest($row) {
+        return !empty($row->allowguest) ? get_string('yes') : get_string('no');
     }
     
     protected function col_timemodified($row) {
