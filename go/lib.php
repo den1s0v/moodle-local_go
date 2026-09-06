@@ -11,18 +11,24 @@ function local_go_refresh_snapshot_callback() {
     local_go_rebuild_snapshot();
 }
 
+/**
+ * Add short links management to the flat navigation.
+ *
+ * @param global_navigation $navigation
+ */
 function local_go_extend_navigation(global_navigation $navigation) {
-    global $PAGE;
-    
-    if (has_capability('local/go:manage', context_system::instance())) {
-        $node = $navigation->add(
-            get_string('manage', 'local_go'),
-            new moodle_url('/local/go/manage.php'),
-            navigation_node::TYPE_SETTING,
-            null,
-            'local_go_manage',
-            new pix_icon('t/nav_link', '')
-        );
-        $node->showinflatnavigation = true;
+    $context = context_system::instance();
+    if (!has_any_capability(['local/go:view', 'local/go:manage'], $context)) {
+        return;
     }
+
+    $node = $navigation->add(
+        get_string('manage', 'local_go'),
+        new moodle_url('/local/go/manage.php'),
+        navigation_node::TYPE_SETTING,
+        null,
+        'local_go_manage',
+        new pix_icon('icon', get_string('manage', 'local_go'), 'local_go')
+    );
+    $node->showinflatnavigation = true;
 }

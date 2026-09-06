@@ -1,5 +1,7 @@
 <?php
 $string['pluginname'] = 'Короткие ссылки';
+$string['go:view'] = 'Просматривать короткие ссылки';
+$string['go:manage'] = 'Управлять короткими ссылками';
 $string['actions'] = 'Действия';
 $string['addnewredirect'] = 'Добавить новое перенаправление';
 $string['bulkaction'] = 'Массовые действия';

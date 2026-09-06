@@ -1,5 +1,7 @@
 <?php
 $string['pluginname'] = 'Go URL Shortener';
+$string['go:view'] = 'View short URL redirects';
+$string['go:manage'] = 'Manage short URL redirects';
 $string['actions'] = 'Actions';
 $string['addnewredirect'] = 'Add new redirect';
 $string['bulkaction'] = 'Bulk Action';

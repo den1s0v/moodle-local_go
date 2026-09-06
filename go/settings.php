@@ -1,19 +1,24 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
-if ($hassiteconfig) {
-    // Создаем категорию в админке.
+$systemcontext = context_system::instance();
+$canaccessmanage = $hassiteconfig
+    || has_any_capability(['local/go:view', 'local/go:manage'], $systemcontext);
+
+if ($canaccessmanage) {
+    // Категория и страница списка доступны и без site:config.
     $ADMIN->add('localplugins', new admin_category('local_go', get_string('pluginname', 'local_go')));
 
-    // Страница управления перенаправлениями.
     $ADMIN->add('local_go', new admin_externalpage(
         'local_go_manage',
         get_string('manage', 'local_go'),
         new moodle_url('/local/go/manage.php'),
-        'local/go:manage'
+        ['local/go:view', 'local/go:manage']
     ));
+}
 
-    // Настройки плагина.
+if ($hassiteconfig) {
+    // Настройки плагина — только администраторам сайта.
     $settings = new admin_settingpage('local_go_settings', get_string('settings', 'local_go'));
     $ADMIN->add('local_go', $settings);
 

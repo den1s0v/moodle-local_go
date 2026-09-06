@@ -8,7 +8,8 @@ require_once($CFG->dirroot.'/local/go/edit_form.php');
 admin_externalpage_setup('local_go_manage');
 
 $context = context_system::instance();
-require_capability('local/go:manage', $context);
+require_any_capability(['local/go:view', 'local/go:manage'], $context);
+$canmanage = has_capability('local/go:manage', $context);
 
 $action = optional_param('action', '', PARAM_ALPHA);
 $id = optional_param('id', 0, PARAM_INT);
@@ -18,6 +19,12 @@ $bulkaction = optional_param('bulkaction', '', PARAM_ALPHA);
 $PAGE->set_url(new moodle_url('/local/go/manage.php'));
 $PAGE->set_title(get_string('manage', 'local_go'));
 $PAGE->set_heading(get_string('manage', 'local_go'));
+
+// Мутации доступны только с local/go:manage.
+$mutating = $bulkaction || in_array($action, ['add', 'edit', 'delete', 'toggle', 'clone'], true);
+if ($mutating) {
+    require_capability('local/go:manage', $context);
+}
 
 // Обработка массовых действий.
 if ($bulkaction && confirm_sesskey()) {
@@ -42,7 +49,7 @@ if ($action) {
                 die;
             }
             break;
-            
+
         case 'edit':
             $redirect = local_go_get_redirect($id);
             $form = new local_go_edit_form(new moodle_url($PAGE->url, ['action' => 'edit']), $redirect);
@@ -58,7 +65,7 @@ if ($action) {
                 die;
             }
             break;
-            
+
         case 'delete':
             if (confirm_sesskey() && $confirm && $id) {
                 local_go_delete_redirect($id);
@@ -74,14 +81,14 @@ if ($action) {
                 die;
             }
             break;
-            
+
         case 'toggle':
             if (confirm_sesskey() && $id) {
                 local_go_toggle_redirect($id);
                 redirect($PAGE->url);
             }
             break;
-            
+
         case 'clone':
             if (confirm_sesskey() && $id) {
                 local_go_clone_redirect($id);
@@ -94,15 +101,15 @@ if ($action) {
 // Отображение основного интерфейса.
 echo $OUTPUT->header();
 
-// Кнопка добавления.
-echo html_writer::link(
-    new moodle_url($PAGE->url, ['action' => 'add']),
-    get_string('addnewredirect', 'local_go'),
-    ['class' => 'btn btn-primary mb-3']
-);
+if ($canmanage) {
+    echo html_writer::link(
+        new moodle_url($PAGE->url, ['action' => 'add']),
+        get_string('addnewredirect', 'local_go'),
+        ['class' => 'btn btn-primary mb-3']
+    );
+}
 
-// Отображение таблицы.
-$table = new local_go_redirects_table('local-go-redirects');
+$table = new local_go_redirects_table('local-go-redirects', $canmanage);
 $table->define_baseurl($PAGE->url);
 $table->out(25, true);
 
