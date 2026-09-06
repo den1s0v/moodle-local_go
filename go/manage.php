@@ -8,7 +8,9 @@ require_once($CFG->dirroot.'/local/go/edit_form.php');
 admin_externalpage_setup('local_go_manage');
 
 $context = context_system::instance();
-require_any_capability(['local/go:view', 'local/go:manage'], $context);
+if (!has_any_capability(['local/go:view', 'local/go:manage'], $context)) {
+    throw new required_capability_exception($context, 'local/go:view', 'nopermissions', '');
+}
 $canmanage = has_capability('local/go:manage', $context);
 
 $action = optional_param('action', '', PARAM_ALPHA);
