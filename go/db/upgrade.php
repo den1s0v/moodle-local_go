@@ -2,7 +2,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 function xmldb_local_go_upgrade($oldversion) {
-    global $DB;
+    global $CFG, $DB;
 
     $dbman = $DB->get_manager();
 
@@ -15,6 +15,17 @@ function xmldb_local_go_upgrade($oldversion) {
         }
 
         upgrade_plugin_savepoint(true, 2026090400, 'local', 'go');
+    }
+
+    if ($oldversion < 2026090600) {
+        if (get_config('local_go', 'fastredirects') === false) {
+            set_config('fastredirects', 1, 'local_go');
+        }
+
+        require_once($CFG->dirroot . '/local/go/locallib.php');
+        local_go_rebuild_snapshot();
+
+        upgrade_plugin_savepoint(true, 2026090600, 'local', 'go');
     }
 
     return true;

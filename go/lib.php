@@ -1,6 +1,16 @@
 <?php
 defined('MOODLE_INTERNAL') || die();
 
+/**
+ * Admin setting updatedcallback entry point.
+ * lib.php is always loaded for local plugins; locallib may not be.
+ */
+function local_go_refresh_snapshot_callback() {
+    global $CFG;
+    require_once($CFG->dirroot . '/local/go/locallib.php');
+    local_go_rebuild_snapshot();
+}
+
 function local_go_extend_navigation(global_navigation $navigation) {
     global $PAGE;
     

@@ -45,3 +45,5 @@ $string['allowguest'] = 'Allow without login';
 $string['allowguest_help'] = 'If enabled, anyone with the link can use this redirect without logging in to Moodle.';
 $string['allowguests'] = 'Allow guest access';
 $string['allowguests_desc'] = 'Allow unauthenticated users to use all redirects. If disabled, public access can still be enabled per redirect.';
+$string['fastredirects'] = 'Fast public redirects';
+$string['fastredirects_desc'] = 'Serve public short links from a local snapshot without loading the full Moodle stack. Private links and cache misses still use the normal path. Disable if you need to troubleshoot redirects.';
